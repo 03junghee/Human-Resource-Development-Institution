@@ -30,15 +30,6 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: '사업·협력',
-    href: '/business',
-    children: [
-      { label: 'HR 진단 연구개발', href: '/business#hr-diagnostics' },
-      { label: 'B2B 교육', href: '/business#b2b-education' },
-      { label: '기업·기관 협력', href: '/business#partnership' },
-    ],
-  },
-  {
     label: '자료·소식',
     href: '/resources',
     children: [
@@ -100,7 +91,7 @@ export default function Navbar() {
       <div className="w-full px-6 md:px-10">
         <div
           className={`flex items-center justify-between mx-auto transition-all duration-300 ${
-            scrolled ? 'h-[68px]' : 'h-[84px]'
+            scrolled ? 'h-[56px] md:h-[68px]' : 'h-[64px] md:h-[84px]'
           }`}
           style={{ maxWidth: '1400px' }}
         >
@@ -109,18 +100,18 @@ export default function Navbar() {
             className="flex items-center gap-3 whitespace-nowrap cursor-pointer"
             onClick={closeAll}
           >
-            <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
+            <div className="w-10 h-10 md:w-14 md:h-14 flex-shrink-0">
               <img
-                src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/295c075333358f20d31659b93d9e5670.png"
+                src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/08a0cba6aada460f7cd3663299bc156a.png"
                 alt="인적자원개발연구협회 로고"
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="flex flex-col">
-              <span className={`font-bold tracking-tight transition-all duration-300 text-primary-500 ${scrolled ? 'text-base' : 'text-lg'}`}>
+              <span className={`font-bold tracking-tight transition-all duration-300 text-primary-500 ${scrolled ? 'text-sm md:text-base' : 'text-sm md:text-lg'}`}>
                 인적자원개발연구협회
               </span>
-              <span className={`tracking-widest uppercase transition-all duration-300 text-foreground-400 ${scrolled ? 'text-[11px]' : 'text-xs'}`}>
+              <span className={`hidden sm:block tracking-widest uppercase transition-all duration-300 text-foreground-400 ${scrolled ? 'text-[10px] md:text-[11px]' : 'text-[10px] md:text-xs'}`}>
                 Human Resource Development Institute
               </span>
             </div>
@@ -138,7 +129,7 @@ export default function Navbar() {
                   to={item.href}
                   className={`px-3 py-2 text-sm font-medium whitespace-nowrap rounded-md transition-colors duration-200 cursor-pointer inline-flex items-center ${
                     activeDropdown === idx || isActive(item.href)
-                      ? 'text-primary-500 bg-background-100'
+                      ? 'text-primary-500'
                       : scrolled
                         ? 'text-foreground-700 hover:text-primary-500'
                         : 'text-foreground-700 hover:text-primary-500'
@@ -157,7 +148,7 @@ export default function Navbar() {
                           to={child.href}
                           className={`block px-5 py-2.5 text-sm whitespace-nowrap transition-colors duration-150 cursor-pointer ${
                             isActive(child.href)
-                              ? 'text-primary-500 bg-primary-50'
+                              ? 'text-primary-500'
                               : 'text-foreground-600 hover:text-primary-500 hover:bg-background-100'
                           }`}
                         >
@@ -184,21 +175,31 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden bg-background-50 border-t border-background-200/70 shadow-lg max-h-[calc(100vh-60px)] overflow-y-auto">
+        <div className="lg:hidden bg-background-50 border-t border-background-200/70 shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
           <div className="px-5 py-3">
             {navItems.map((item, idx) => (
               <div key={item.label} className="border-b border-background-200/50 last:border-b-0">
-                <button
-                  className="flex items-center justify-between w-full py-3.5 text-sm font-medium text-foreground-700 cursor-pointer"
-                  onClick={() => setExpandedMobile(expandedMobile === idx ? null : idx)}
-                >
-                  {item.label}
-                  <i
-                    className={`ri-arrow-down-s-line text-base transition-transform duration-200 ${
-                      expandedMobile === idx ? 'rotate-180' : ''
-                    }`}
-                  ></i>
-                </button>
+                <div className="flex items-center">
+                  <Link
+                    to={item.href}
+                    className="flex-1 py-3.5 text-sm font-medium text-foreground-700 cursor-pointer"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <button
+                      className="px-3 py-3.5 cursor-pointer"
+                      onClick={() => setExpandedMobile(expandedMobile === idx ? null : idx)}
+                    >
+                      <i
+                        className={`ri-arrow-down-s-line text-base transition-transform duration-200 ${
+                          expandedMobile === idx ? 'rotate-180' : ''
+                        }`}
+                      ></i>
+                    </button>
+                  )}
+                </div>
 
                 {expandedMobile === idx && item.children && (
                   <div className="pb-3 pl-4 space-y-1">

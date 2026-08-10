@@ -17,7 +17,7 @@ export default function HeroSection() {
       {/* 기하학적 배경 이미지 */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://readdy.ai/api/search-image?query=Abstract%20minimalist%20geometric%20network%20pattern%20with%20soft%20organic%20lines%20and%20nodes%20in%20muted%20sage%20green%20and%20deep%20forest%20green%20tones%20on%20pale%20cream%20background%2C%20clean%20academic%20research%20institute%20aesthetic%2C%20subtle%20dot%20grid%20texture%2C%20professional%20institutional%20style%2C%20soft%20natural%20lighting%2C%20no%20text%2C%20elegant%20and%20restrained&width=1920&height=1080&seq=hero-geom-01&orientation=landscape"
+          src="https://readdy.ai/api/search-image?query=Abstract%20minimalist%20geometric%20network%20pattern%20with%20soft%20organic%20lines%20and%20nodes%20in%20muted%20teal%20and%20mint%20tones%20on%20warm%20off-white%20cream%20background%2C%20clean%20academic%20research%20institute%20aesthetic%2C%20subtle%20dot%20grid%20texture%2C%20professional%20institutional%20style%2C%20soft%20natural%20lighting%2C%20no%20text%2C%20elegant%20and%20restrained&width=1920&height=1080&seq=hero-geom-02&orientation=landscape"
           alt=""
           className="w-full h-full object-cover"
         />
@@ -45,8 +45,8 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* 기하학적 Node Diagram - 중앙 */}
-      <div className="absolute inset-0 z-[1] flex items-center justify-center opacity-[0.09]">
+      {/* 기하학적 Node Diagram - 중앙 (데스크톱만 표시) */}
+      <div className="hidden md:flex absolute inset-0 z-[1] items-center justify-center opacity-[0.09]">
         <svg
           className="w-full max-w-[1000px] h-auto"
           viewBox="0 0 1000 260"
@@ -105,7 +105,7 @@ export default function HeroSection() {
       {/* 로고 워터마크 중앙 배경 */}
       <div className="absolute inset-0 z-[1] flex items-center justify-center opacity-[0.03] pointer-events-none">
         <img
-          src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/295c075333358f20d31659b93d9e5670.png"
+          src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/08a0cba6aada460f7cd3663299bc156a.png"
           alt=""
           className="w-[680px] h-auto object-contain"
         />
@@ -118,9 +118,9 @@ export default function HeroSection() {
           }`}
         >
           <div className="flex items-center justify-center mb-2">
-            <div className="w-40 h-40 md:w-64 md:h-64">
+            <div className="w-32 h-32 md:w-56 md:h-56 lg:w-64 lg:h-64">
               <img
-                src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/295c075333358f20d31659b93d9e5670.png"
+                src="https://static.readdy.ai/image/4a4754448bbef0f28ab8f59675ee44e6/08a0cba6aada460f7cd3663299bc156a.png"
                 alt="인적자원개발연구협회"
                 className="w-full h-full object-contain"
               />
@@ -132,7 +132,7 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className={`text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.25] md:leading-[1.2] text-primary-600 mb-3 md:mb-4 tracking-tight transition-all duration-[1400ms] ease-out delay-100 ${
+          className={`text-xl md:text-4xl lg:text-5xl font-bold leading-[1.3] md:leading-[1.2] text-primary-600 mb-3 md:mb-4 tracking-tight transition-all duration-[1400ms] ease-out delay-100 ${
             loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
@@ -152,7 +152,7 @@ export default function HeroSection() {
         </p>
 
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 transition-all duration-[1800ms] ease-out delay-300 ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-2.5 md:gap-4 transition-all duration-[1800ms] ease-out delay-300 ${
             loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >

@@ -17,7 +17,7 @@ const historyItems = [
       { month: '03', content: '\'인적자원개발연구협회\' 비영리법인 설립 등기 및 부설 연구소 개소' },
       { month: '06', content: 'AI 자소서 방지 및 주도적 사고력 평가를 위한 \'People Analytics 기반 HR 채용 진단 도구 v1.0\' 개발' },
       { month: '09', content: '국내 주요 기업 HRD 담당자 대상 \'AI 시대 진짜 인재 가려내기\' 특별 포럼 개최' },
-      { month: '11', content: '청년층 주도성 강화를 위한 기업 맞춤형 B2B 교육 프로그램 런칭' },
+      { month: '11', content: '청년층 주도성 강화를 위한 교육 프로그램 런칭' },
     ],
   },
   {
@@ -26,7 +26,7 @@ const historyItems = [
     items: [
       { month: '02', content: '정부 지원 R&D 및 국책 교육 정책 연구 과제 최종 사업자 선정' },
       { month: '05', content: '글로벌 OECD 정책 자문단 및 AI 기업 APAC 채용 네트워크 합동 정기 학술 세미나 개최' },
-      { month: '08', content: '\'주도성 역량 진단 솔루션\' 기업 B2B 상용화 및 공식 웹사이트 오픈' },
+      { month: '08', content: '\'주도성 역량 진단 솔루션\' 공식 웹사이트 오픈' },
     ],
   },
 ];

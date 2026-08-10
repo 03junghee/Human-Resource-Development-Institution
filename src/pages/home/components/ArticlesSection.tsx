@@ -15,7 +15,7 @@ const articlesData = [
         id: 'article2',
         number: '제2조',
         title: '(목적)',
-        content: '본 협회는 생성형 AI 기술 발전과 환경 변화에 따른 인류의 인지 능력 위기 및 주체성 저하 문제를 진단하고, OECD 2030 프레임워크에 부합하는 주도적 문제 해결 능력을 갖춘 미래 인재를 양성하는 것을 목적으로 한다. 이를 위해 4대 주도성(회복·진로·관계·실존) 중심의 인적자원 개발 연구를 수행하고, 기업의 HR 채용 문제 해결과 국가적 정책 과제 수주 및 B2B 교육 솔루션을 제공함으로써 사회적 가치 창출과 국가적 위상 제고에 기여한다.',
+        content: '본 협회는 생성형 AI 기술 발전과 환경 변화에 따른 인류의 인지 능력 위기 및 주체성 저하 문제를 진단하고, OECD 2030 프레임워크에 부합하는 주도적 문제 해결 능력을 갖춘 미래 인재를 양성하는 것을 목적으로 한다. 이를 위해 4대 주도성(회복·진로·관계·실존) 중심의 인적자원 개발 연구를 수행하고, 국가적 정책 과제 수주 및 학술 연구 성과 확산을 통해 사회적 가치 창출과 국가적 위상 제고에 기여한다.',
       },
       {
         id: 'article3',
@@ -30,7 +30,7 @@ const articlesData = [
         content: '본 협회는 제2조의 목적을 달성하기 위하여 다음 각 호의 사업을 추진한다.',
         list: [
           'AI 시대의 인지 능력 및 주체성 회복을 위한 4대 핵심 역량 연구',
-          '기업 현장 맞춤형 B2B 교육 프로그램 개발 및 HR 채용 진단 도구 제공',
+          '주도성 기반 교육 프로그램 개발 및 인지 역량 진단 도구 연구',
           'OECD 등 글로벌 교육 프레임워크 연계 정책 연구 및 정부 지원 연구 과제 수주·수행',
           'AI 활용 역량 재정의 및 청년층 주도적 사고(What & Why) 강화를 위한 세미나, 포럼, 학술행사 개최',
           '기타 본 협회의 목적 달성에 필요한 부대사업',
@@ -119,7 +119,7 @@ const articlesData = [
         list: [
           '정관의 변경 및 협회 운영에 관한 제반 규정의 제·개정',
           '사업 계획 수립, 예산 확정 및 결산 승인',
-          '주요 연구 과제 및 B2B 사업 방향 설정',
+          '주요 연구 과제 및 사업 방향 설정',
         ],
       },
     ],
@@ -134,7 +134,7 @@ const articlesData = [
         title: '(재정 및 수익)',
         content: '본 협회의 운영 및 연구 재정은 다음 각 호의 수익으로 충당한다.',
         list: [
-          '기업 B2B 교육 솔루션 제공 및 HR 진단 도구 라이선스 수익',
+          '교육 프로그램 제공 및 연구 성과물 라이선스 수익',
           '정부 및 공공기관 연구 과제 수행 지원금',
           '회원 연회비, 후원금 및 기타 기부금',
           '학술행사 및 컨설팅 수익금',
@@ -212,11 +212,11 @@ export default function ArticlesSection() {
         <h2 className="text-xl md:text-3xl font-bold text-primary-600 mb-4">인적자원개발연구협회 정관</h2>
         <p className="text-sm text-foreground-400 mb-12 md:mb-16">Articles of Association</p>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12">
           {/* Sticky Sidebar */}
           <div className="md:w-[200px] flex-shrink-0">
-            <nav className="md:sticky md:top-[100px]">
-              <ul className="flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
+            <nav className="md:sticky md:top-[80px]">
+              <ul className="flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 -mx-1 px-1 md:mx-0 md:px-0">
                 {articlesData.map((chapter) => (
                   <li key={chapter.id} className="flex-shrink-0">
                     <button
@@ -252,7 +252,7 @@ export default function ArticlesSection() {
 
                 {chapter.articles.map((article) => (
                   <div key={article.id} className="mb-8">
-                    <h4 className="text-base font-medium text-foreground-800 mb-3">
+                    <h4 className="text-sm md:text-base font-medium text-foreground-800 mb-3">
                       {article.number}<span className="text-foreground-500 font-normal">{article.title}</span>
                     </h4>
 

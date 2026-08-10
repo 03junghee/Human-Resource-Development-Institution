@@ -23,7 +23,7 @@ export default function GreetingSection() {
     <section ref={sectionRef} className="py-20 md:py-28 px-6 md:px-10 bg-background-50">
       <div className="max-w-[820px] mx-auto">
         <div className="mb-2">
-          <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">Greeting</span>
+          <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">소개</span>
         </div>
 
         <h2
@@ -56,7 +56,7 @@ export default function GreetingSection() {
             인적자원개발연구협회는 이러한 시대적 과제에 응답하기 위해 설립되었습니다. 빅테크 HR 실무 총괄, 국내외 교육학 및 인지과학 교수진, OECD 정책 전문가들이 뜻을 모아, AI 보조자로 전락하지 않고 변화를 주도하는 진짜 미래 인재의 역량을 정의하고 진단합니다.
           </Paragraph>
           <Paragraph index={5} visible={visible}>
-            본 연구회는 OECD 2030 프레임워크가 제시하는 &lsquo;삶의 주체성&rsquo;을 바탕으로 회복·진로·관계·실존의 4대 주도성 연구를 추진합니다. 이를 통해 기업에는 주도적 인재를 가려내는 정교한 HR 진단 도구와 B2B 교육 솔루션을 제공하고, 국가적으로는 인류 인지 능력 위기에 대응하는 글로벌 수준의 정책 솔루션을 제시하겠습니다.
+            본 연구회는 OECD 2030 프레임워크가 제시하는 &lsquo;삶의 주체성&rsquo;을 바탕으로 회복·진로·관계·실존의 4대 주도성 연구를 추진합니다. 이를 통해 기업과 사회에 주도적 인재 양성의 새로운 패러다임을 제시하고, 국가적으로는 인류 인지 능력 위기에 대응하는 글로벌 수준의 정책 솔루션을 제시하겠습니다.
           </Paragraph>
           <Paragraph index={6} visible={visible}>
             AI 활용을 넘어, 스스로의 삶과 일터에서 주도권을 가진 인재들이 대한민국을 넘어 세계 무대로 나아갈 수 있도록 인적자원개발연구협회가 든든한 학술적·실무적 이정표가 되겠습니다.

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const orgData = [
   {
     id: 'research',
+    shortTitle: '주도성 역량 연구부',
     title: '1. 주도성 역량 연구부',
     role: 'OECD 2030 프레임워크 기준에 맞춘 4대 주도성 이론 정립, 지표 개발 및 학술 연구',
     teams: [
@@ -13,6 +14,7 @@ const orgData = [
   },
   {
     id: 'hr-tools',
+    shortTitle: 'HR 진단도구 연구개발부',
     title: '2. HR 진단도구 연구개발부',
     role: 'AI 자소서 범람 및 서류 무용지물화에 대응하는 기업용 HR 채용 진단 도구 및 실무 평가 도구 개발',
     teams: [
@@ -23,6 +25,7 @@ const orgData = [
   },
   {
     id: 'b2b',
+    shortTitle: 'B2B 교육·사업개발본부',
     title: '3. B2B 교육&사업개발본부',
     role: '수동화된 청년층과 기업 현장 요구 간의 격차를 해소하는 기업 맞춤형 교육 프로그램 운영',
     teams: [
@@ -33,6 +36,7 @@ const orgData = [
   },
   {
     id: 'admin',
+    shortTitle: '경영기획실',
     title: '4. 경영기획실',
     role: '법인 주소지 관리, 법정 고유번호/세무 처리, 웹사이트 운영, 회원 관리 및 협회 행정 총괄',
     teams: [
@@ -68,73 +72,102 @@ export default function OrganizationSection() {
 
   return (
     <section ref={sectionRef} className="py-20 md:py-28 px-6 md:px-10 bg-background-100">
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         <div className="mb-2">
           <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">Organization</span>
         </div>
         <h2 className="text-xl md:text-3xl font-bold text-primary-600 mb-12 md:mb-16">인적자원개발연구협회 조직도</h2>
 
-        {/* Top Level Hierarchy */}
-        <div className="flex flex-col items-center">
-          {/* 이사회 */}
-          <div
-            className={`w-full max-w-[320px] bg-primary-500 text-background-50 px-6 py-3.5 rounded-lg text-sm font-semibold text-center transition-all duration-700 ${
-              visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-          >
-            이사회
-          </div>
-
-          <div className="w-[1px] h-6 bg-primary-300"></div>
-
-          {/* 2nd Row - 감사 + 협회장 */}
-          <div className="flex items-start gap-4 md:gap-8">
-            <div className="flex flex-col items-center">
-              <div
-                className={`bg-background-50 border border-primary-200 px-5 py-2.5 rounded-lg text-xs text-foreground-600 text-center min-w-[100px] transition-all duration-700 delay-100 ${
-                  visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                }`}
-              >
-                <span className="font-medium">감사</span>
-                <span className="block text-[10px] text-foreground-400 mt-0.5">회원 감시</span>
-              </div>
-              <div className="w-[1px] h-10 bg-primary-200"></div>
-              <div className="w-8 h-[1px] bg-primary-200 absolute" style={{ marginTop: '40px' }}></div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div
-                className={`bg-accent-500 text-background-50 px-6 py-3 rounded-lg text-sm font-semibold text-center min-w-[160px] transition-all duration-700 delay-200 ${
-                  visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
-              >
-                협회장 (연구소장)
-              </div>
-              <div className="w-[1px] h-8 bg-primary-200"></div>
+        {/* Org Chart Tree */}
+        <div className="mb-14">
+          {/* Level 1: 이사회 */}
+          <div className="flex justify-center mb-0">
+            <div
+              className={`bg-primary-500 text-background-50 px-8 py-3 rounded-lg text-sm font-semibold text-center min-w-[200px] transition-all duration-700 ${
+                visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
+            >
+              이사회
             </div>
           </div>
 
-          {/* 자문위원회 */}
+          {/* Connector down */}
+          <div className="flex justify-center">
+            <div className="w-[1px] h-8 bg-primary-300"></div>
+          </div>
+
+          {/* Level 2: 3 items with horizontal connector */}
+          <div className="relative max-w-[600px] mx-auto pt-8 overflow-x-auto">
+            {/* Horizontal line */}
+            <div className="absolute top-0 left-[16%] right-[16%] h-[1px] bg-primary-300"></div>
+
+            <div className="grid grid-cols-3 gap-2 md:gap-4 min-w-[340px]">
+              {/* 감사 */}
+              <div className="relative flex flex-col items-center">
+                <div className="w-[1px] h-6 md:h-8 bg-primary-300 absolute bottom-full left-1/2 -translate-x-1/2"></div>
+                <div
+                  className={`bg-background-50 border-2 border-primary-200 px-2 md:px-4 py-2.5 md:py-3 rounded-lg text-[11px] md:text-xs text-center w-full transition-all duration-700 delay-100 ${
+                    visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                  }`}
+                >
+                  <span className="font-semibold text-foreground-700 block">감사</span>
+                  <span className="text-[10px] text-foreground-400 mt-0.5 block">회원 감시</span>
+                </div>
+              </div>
+
+              {/* 협회장 */}
+              <div className="relative flex flex-col items-center">
+                <div className="w-[1px] h-6 md:h-8 bg-primary-300 absolute bottom-full left-1/2 -translate-x-1/2"></div>
+                <div
+                  className={`bg-accent-500 text-background-50 px-2 md:px-4 py-2.5 md:py-3 rounded-lg text-[11px] md:text-sm font-semibold text-center w-full transition-all duration-700 delay-200 ${
+                    visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                >
+                  협회장
+                  <span className="text-xs font-normal opacity-90 block">(연구소장)</span>
+                </div>
+                {/* Connector down to departments */}
+                <div className="w-[1px] h-6 bg-primary-300 mt-2"></div>
+              </div>
+
+              {/* 자문위원회 */}
+              <div className="relative flex flex-col items-center">
+                <div className="w-[1px] h-6 md:h-8 bg-primary-300 absolute bottom-full left-1/2 -translate-x-1/2"></div>
+                <div
+                  className={`bg-background-50 border-2 border-accent-300 px-2 md:px-4 py-2.5 md:py-3 rounded-lg text-[11px] md:text-xs text-center w-full transition-all duration-700 delay-300 ${
+                    visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                  }`}
+                >
+                  <span className="font-semibold text-foreground-700 block">자문위원회</span>
+                  <span className="text-[10px] text-foreground-400 mt-0.5 block">글로벌 정책 · AI·HR 산업</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Connector down to departments */}
+          <div className="flex justify-center mt-0 mb-6">
+            <div className="w-[1px] h-6 bg-primary-300"></div>
+          </div>
+
+          {/* Level 3: Department summaries */}
           <div
-            className={`bg-background-50 border border-accent-300 px-5 py-2.5 rounded-lg text-xs font-medium text-foreground-600 text-center min-w-[120px] transition-all duration-700 delay-300 ${
-              visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            className={`grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-[720px] mx-auto transition-all duration-700 delay-500 ${
+              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            자문위원회
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 mt-2 mb-8 text-center">
-            <span className="text-[11px] text-foreground-400 bg-background-50 px-3 py-1.5 rounded-full border border-background-200">
-              글로벌 정책 자문단
-            </span>
-            <span className="text-[11px] text-foreground-400 bg-background-50 px-3 py-1.5 rounded-full border border-background-200">
-              AI·HR 산업 자문단
-            </span>
+            {orgData.map((dept) => (
+              <div key={dept.id} className="bg-background-50 border border-background-200 rounded-lg p-3 text-center">
+                <span className="text-xs font-semibold text-primary-600">{dept.shortTitle}</span>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Divider */}
         <div className="w-full h-[1px] bg-background-200 mb-10"></div>
 
-        {/* Departments - Unified Card Style */}
+        {/* Detailed Department Cards */}
         <div className="space-y-3">
           {orgData.map((dept, idx) => (
             <div
@@ -142,16 +175,18 @@ export default function OrganizationSection() {
               className={`bg-background-50 border border-background-200/70 rounded-lg overflow-hidden transition-all duration-700 ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
-              style={{ transitionDelay: `${400 + idx * 120}ms` }}
+              style={{ transitionDelay: `${600 + idx * 100}ms` }}
             >
               <button
-                className="w-full flex items-center justify-between px-5 py-4 md:py-5 text-left cursor-pointer hover:bg-background-50/80 transition-colors"
+                className="w-full flex items-center justify-between px-5 py-4 md:py-5 text-left cursor-pointer hover:bg-background-100/50 transition-colors"
                 onClick={() => toggle(dept.id)}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 flex items-center justify-center rounded-md flex-shrink-0 ${
-                    expanded === dept.id ? 'bg-primary-50' : 'bg-background-100'
-                  }`}>
+                  <div
+                    className={`w-8 h-8 flex items-center justify-center rounded-md flex-shrink-0 ${
+                      expanded === dept.id ? 'bg-primary-50' : 'bg-background-100'
+                    }`}
+                  >
                     <span className="text-xs font-bold text-primary-500">{idx + 1}</span>
                   </div>
                   <div>
@@ -173,7 +208,9 @@ export default function OrganizationSection() {
                   <p className="text-xs text-foreground-500 mt-3 mb-4 sm:hidden">{dept.role}</p>
 
                   <div className="mb-3">
-                    <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-2">구성 하위팀</h5>
+                    <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-2">
+                      구성 하위팀
+                    </h5>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {dept.teams.map((team) => (
                         <div key={team.name} className="bg-background-100 rounded-md p-3">
@@ -186,7 +223,9 @@ export default function OrganizationSection() {
 
                   {dept.personnel && (
                     <div className="mt-3 pt-3 border-t border-background-200">
-                      <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-1.5">핵심배치 인력</h5>
+                      <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-1.5">
+                        핵심배치 인력
+                      </h5>
                       <p className="text-xs text-foreground-500">{dept.personnel}</p>
                     </div>
                   )}

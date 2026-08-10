@@ -35,8 +35,8 @@ const strategicGoals = [
   },
   {
     number: '02',
-    title: 'B2B HRD & 채용 솔루션 구축',
-    description: '삼성, SK 등 대기업 및 주요 기업 맞춤형 꼬리질문 면접가이드 및 실무 과제 진단 툴 보급',
+    title: '학술 연구 성과 확산',
+    description: '학술 포럼, 국제 세미나, 정책 보고서 발간을 통한 연구 성과의 사회적 환원 및 글로벌 학술 네트워크 구축',
   },
   {
     number: '03',

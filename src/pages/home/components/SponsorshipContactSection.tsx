@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function SponsorshipContactSection() {
-  const [activeTab, setActiveTab] = useState<'individual' | 'corporate'>('individual');
   const [selectedAmount, setSelectedAmount] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -96,61 +95,29 @@ export default function SponsorshipContactSection() {
           <div className="mb-8">
             <h3 className="text-sm font-semibold text-primary-500 uppercase tracking-wider mb-4">후원 유형 안내</h3>
 
-            <div className="flex items-center gap-1 bg-background-100 rounded-full p-1 mb-6 w-fit">
-              <button
-                onClick={() => setActiveTab('individual')}
-                className={`px-4 py-2 text-sm rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
-                  activeTab === 'individual' ? 'bg-background-50 text-primary-600 font-medium shadow-sm' : 'text-foreground-400 hover:text-foreground-600'
-                }`}
-              >
-                개인 후원
-              </button>
-              <button
-                onClick={() => setActiveTab('corporate')}
-                className={`px-4 py-2 text-sm rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
-                  activeTab === 'corporate' ? 'bg-background-50 text-primary-600 font-medium shadow-sm' : 'text-foreground-400 hover:text-foreground-600'
-                }`}
-              >
-                기업 및 기관 후원
-              </button>
+            <div>
+              <p className="text-sm text-foreground-500 mb-4">
+                <strong className="text-foreground-700">정기 후원:</strong> 매월 일정 금액을 후원하여 지속 가능한 연구 생태계를 만듭니다.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {amounts.map((amt) => (
+                  <button
+                    key={amt}
+                    onClick={() => setSelectedAmount(amt)}
+                    className={`px-5 py-2.5 text-sm rounded-md border transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                      selectedAmount === amt
+                        ? 'border-primary-400 bg-primary-500 text-background-50'
+                        : 'border-background-300 text-foreground-600 hover:border-primary-300 hover:text-primary-500'
+                    }`}
+                  >
+                    {amt}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-foreground-400">
+                <strong>혜택:</strong> 기부금 영수증 발급(소득공제 혜택) · 연간 연구 보고서 수령 · 협회 주최 포럼 우선 초청
+              </p>
             </div>
-
-            {activeTab === 'individual' ? (
-              <div>
-                <p className="text-sm text-foreground-500 mb-4">
-                  <strong className="text-foreground-700">정기 후원:</strong> 매월 일정 금액을 후원하여 지속 가능한 연구 생태계를 만듭니다.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {amounts.map((amt) => (
-                    <button
-                      key={amt}
-                      onClick={() => setSelectedAmount(amt)}
-                      className={`px-5 py-2.5 text-sm rounded-md border transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                        selectedAmount === amt
-                          ? 'border-primary-400 bg-primary-500 text-background-50'
-                          : 'border-background-300 text-foreground-600 hover:border-primary-300 hover:text-primary-500'
-                      }`}
-                    >
-                      {amt}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-foreground-400">
-                  <strong>혜택:</strong> 기부금 영수증 발급(소득공제 혜택) · 연간 연구 보고서 수령 · 협회 주최 포럼 우선 초청
-                </p>
-              </div>
-            ) : (
-              <div>
-                <p className="text-sm text-foreground-500 mb-3">
-                  청년 인재 양성 및 AI 시대 인지 역량 저하 방지를 위한 기업 사회공헌 파트너십
-                </p>
-                <ul className="space-y-1.5 text-xs text-foreground-400">
-                  <li>· 협회 개발 &lsquo;HR 채용 진단 도구&rsquo; 우선 도입 및 할인 혜택</li>
-                  <li>· 기업 맞춤형 임직원/신입사원 주도성 강화 교육 프로그램 연계</li>
-                  <li>· 협회 공식 홈페이지 및 학술 포럼 내 기업 로고 명시 및 공동 연구 성과 발표</li>
-                </ul>
-              </div>
-            )}
           </div>
 
           <div className="text-sm text-foreground-400 pt-4 border-t border-background-200">
@@ -235,7 +202,6 @@ export default function SponsorshipContactSection() {
                 >
                   <option value="">문의 유형을 선택해 주세요</option>
                   <option value="연구회원 지원">연구회원 지원</option>
-                  <option value="기업 협력">기업 협력</option>
                   <option value="연구·학술 문의">연구·학술 문의</option>
                   <option value="후원 문의">후원 문의</option>
                   <option value="일반 문의">일반 문의</option>

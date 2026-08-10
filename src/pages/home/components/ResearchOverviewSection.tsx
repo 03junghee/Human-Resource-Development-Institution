@@ -1,6 +1,42 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const areaBorderHover: Record<string, string> = {
+  accent: 'hover:border-accent-300',
+  primary: 'hover:border-primary-300',
+  secondary: 'hover:border-secondary-300',
+};
+
+const areaBg: Record<string, string> = {
+  accent: 'bg-accent-50',
+  primary: 'bg-primary-50',
+  secondary: 'bg-secondary-50',
+};
+
+const areaBgHover: Record<string, string> = {
+  accent: 'group-hover:bg-accent-100',
+  primary: 'group-hover:bg-primary-100',
+  secondary: 'group-hover:bg-secondary-100',
+};
+
+const areaText: Record<string, string> = {
+  accent: 'text-accent-500',
+  primary: 'text-primary-500',
+  secondary: 'text-secondary-500',
+};
+
+const areaTagBg: Record<string, string> = {
+  accent: 'bg-accent-50',
+  primary: 'bg-primary-50',
+  secondary: 'bg-secondary-50',
+};
+
+const areaTagText: Record<string, string> = {
+  accent: 'text-accent-700',
+  primary: 'text-primary-700',
+  secondary: 'text-secondary-700',
+};
+
 const researchAreas = [
   {
     id: 'resilient',
@@ -82,13 +118,13 @@ export default function ResearchOverviewSection() {
             <Link
               key={area.id}
               to={`/research#${area.id}`}
-              className={`group bg-background-50 border border-background-200/70 rounded-lg p-6 transition-all duration-500 hover:border-${area.color}-300 hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] cursor-pointer ${
+              className={`group bg-background-50 border border-background-200/70 rounded-lg p-6 transition-all duration-500 ${areaBorderHover[area.color]} hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] cursor-pointer ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
               style={{ transitionDelay: `${idx * 150}ms` }}
             >
-              <div className={`w-10 h-10 flex items-center justify-center rounded-md bg-${area.color}-50 mb-4 group-hover:bg-${area.color}-100 transition-colors duration-300`}>
-                <i className={`${area.icon} text-lg text-${area.color}-500`}></i>
+              <div className={`w-10 h-10 flex items-center justify-center rounded-md ${areaBg[area.color]} mb-4 ${areaBgHover[area.color]} transition-colors duration-300`}>
+                <i className={`${area.icon} text-lg ${areaText[area.color]}`}></i>
               </div>
               <h3 className="text-base font-semibold text-foreground-800 mb-1">{area.title}</h3>
               <p className="text-xs text-foreground-400 font-medium mb-3">{area.subtitle}</p>
@@ -97,7 +133,7 @@ export default function ResearchOverviewSection() {
                 {area.keywords.map((kw) => (
                   <span
                     key={kw}
-                    className={`text-[11px] px-2 py-1 rounded-full bg-${area.color}-50 text-${area.color}-700 font-medium`}
+                    className={`text-[11px] px-2 py-1 rounded-full ${areaTagBg[area.color]} ${areaTagText[area.color]} font-medium`}
                   >
                     {kw}
                   </span>

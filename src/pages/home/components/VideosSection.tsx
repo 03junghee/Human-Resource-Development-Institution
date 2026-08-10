@@ -90,8 +90,8 @@ export default function VideosSection() {
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="relative bg-background-100 h-36 md:h-40 flex items-center justify-center cursor-pointer">
-                <div className="w-12 h-12 rounded-full bg-background-50/90 flex items-center justify-center opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+              <div className="relative bg-background-100 h-32 sm:h-36 md:h-40 flex items-center justify-center cursor-pointer">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background-50/90 flex items-center justify-center opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
                   <i className="ri-play-fill text-2xl text-primary-500 ml-0.5"></i>
                 </div>
               </div>

@@ -84,7 +84,7 @@ export default function StatisticsSection() {
     <section ref={sectionRef} className="py-20 md:py-28 px-6 md:px-10 bg-primary-500">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-14 md:mb-18">
-          <span className="text-xs font-medium text-background-200 uppercase tracking-widest">Data & Evidence</span>
+          <span className="text-xs font-medium text-background-200 uppercase tracking-widest">주요 데이터</span>
           <h2 className="text-xl md:text-3xl font-bold text-background-50 mt-2 mb-3">
             왜 지금 주도성 연구인가
           </h2>

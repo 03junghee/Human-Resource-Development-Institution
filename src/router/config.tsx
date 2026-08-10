@@ -3,9 +3,9 @@ import NotFound from "../pages/NotFound";
 import Home from "../pages/home/page";
 import AboutPage from "../pages/about/page";
 import ResearchPage from "../pages/research/page";
-import BusinessPage from "../pages/business/page";
 import ResourcesPage from "../pages/resources/page";
 import ParticipatePage from "../pages/participate/page";
+import NoticeDetail from "../pages/resources/NoticeDetail";
 
 const routes: RouteObject[] = [
   {
@@ -29,20 +29,16 @@ const routes: RouteObject[] = [
     element: <ResearchPage />,
   },
   {
-    path: "/business",
-    element: <BusinessPage />,
-  },
-  {
-    path: "/business/*",
-    element: <BusinessPage />,
-  },
-  {
     path: "/resources",
     element: <ResourcesPage />,
   },
   {
     path: "/resources/*",
     element: <ResourcesPage />,
+  },
+  {
+    path: "/resources/notices/:id",
+    element: <NoticeDetail />,
   },
   {
     path: "/participate",
