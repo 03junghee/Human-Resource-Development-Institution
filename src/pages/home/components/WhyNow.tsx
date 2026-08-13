@@ -20,85 +20,9 @@ export default function GreetingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 px-6 md:px-10 bg-background-50">
-      <div className="max-w-[1280px] mx-auto">
-        <div className="mb-2">
-          <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">소개</span>
-        </div>
-
-        <h2
-          className={`text-xl md:text-3xl font-bold text-primary-600 leading-snug mb-12 md:mb-16 transition-all duration-1000 ease-out ${
-            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}
-        >
-          &quot;AI가 답을 주는 시대, &lsquo;질문하는 인간&rsquo;의 주도성을 되찾습니다.&quot;
-        </h2>
-
-        {/* 좌측 사진 + 우측 본문 그리드 레이아웃 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* 좌측: 대표 프로필 사진 및 이름/직함 */}
-          <div
-            className={`lg:col-span-4 flex flex-col transition-all duration-1000 ease-out ${
-              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-            }`}
-          >
-            <div className="w-full aspect-[3/4] bg-background-200 rounded-2xl overflow-hidden mb-4 shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" // 실제 이미지 경로로 변경하여 사용하세요.
-                alt="인적자원개발연구협회 회장"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="border-l-4 border-primary-500 pl-3 py-1">
-              <p className="text-xs text-foreground-500 font-medium">인적자원개발연구협회 회장</p>
-              <h4 className="text-lg font-bold text-foreground-900 mt-0.5">홍길동</h4>
-            </div>
-          </div>
-
-          {/* 우측: 본문 내용 */}
-          <div className="lg:col-span-8">
-            <div className="space-y-6 text-sm md:text-base text-foreground-600 leading-[1.85]">
-              <Paragraph index={0} visible={visible}>
-                인적자원개발연구협회 홈페이지를 찾아주신 여러분을 진심으로 환영합니다.
-              </Paragraph>
-              <Paragraph index={1} visible={visible}>
-                생성형 AI 기술의 비약적 발전은 인류에게 전대미문의 편리함을 안겨주었지만, 동시에 심각한 인지적 위기를 불러왔습니다.
-              </Paragraph>
-              <Paragraph index={2} visible={visible}>
-                단순 지식 암기와 AI 도구 활용에 지나치게 의존한 결과, 스스로 문제를 정의하고 검증하는 &lsquo;주도적 사고 능력&rsquo;은 위축되고 있습니다.
-              </Paragraph>
-              <Paragraph index={3} visible={visible}>
-                최근 글로벌 연구에서 입증된 청년 세대의 역(逆)플린 효과와 기업 현장에서 일어나는 &lsquo;서류 평가 무용지물론&rsquo;은 우리 사회 교육과 채용 패러다임의 근본적 전환을 요구하고 있습니다.
-              </Paragraph>
-            </div>
-
-            <div className="my-10 md:my-12 border-t border-background-200/70"></div>
-
-            <div className="space-y-6 text-sm md:text-base text-foreground-600 leading-[1.85]">
-              <Paragraph index={4} visible={visible}>
-                인적자원개발연구협회는 이러한 시대적 과제에 응답하기 위해 설립되었습니다. 빅테크 HR 실무 총괄, 국내외 교육학 및 인지과학 교수진, OECD 정책 전문가들이 뜻을 모아, AI 보조자로 전락하지 않고 변화를 주도하는 진짜 미래 인재의 역량을 정의하고 진단합니다.
-              </Paragraph>
-              <Paragraph index={5} visible={visible}>
-                본 연구회는 OECD 2030 프레임워크가 제시하는 &lsquo;삶의 주체성&rsquo;을 바탕으로 회복·진로·관계·실존의 4대 주도성 연구를 추진합니다. 이를 통해 기업과 사회에 주도적 인재 양성의 새로운 패러다임을 제시하고, 국가적으로는 인류 인지 능력 위기에 대응하는 글로벌 수준의 정책 솔루션을 제시하겠습니다.
-              </Paragraph>
-              <Paragraph index={6} visible={visible}>
-                AI 활용을 넘어, 스스로의 삶과 일터에서 주도권을 가진 인재들이 대한민국을 넘어 세계 무대로 나아갈 수 있도록 인적자원개발연구협회가 든든한 학술적·실무적 이정표가 되겠습니다.
-              </Paragraph>
-            </div>
-
-            <div
-              className={`mt-10 md:mt-12 text-right text-sm text-foreground-400 transition-all duration-1000 ease-out delay-[1200ms] ${
-                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-              }`}
-            >
-              <p>- 인적자원개발연구협회 회장 및 연구진 일동 -</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <section ref={sectionRef} className="pt-0 pb-20 md:pb-28 px-6 md:px-10 bg-background-50">
       {/* 왜 지금 주도성 연구인가 */}
-      <div className="max-w-[1280px] mx-auto mt-20 md:mt-28 bg-background-100 rounded-2xl p-6 md:p-10 lg:p-12">
+      <div className="max-w-[1280px] mx-auto mt-0 bg-background-100 rounded-2xl p-6 md:p-10 lg:p-12">
         <div className="mb-2">
           <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">Why Now</span>
         </div>

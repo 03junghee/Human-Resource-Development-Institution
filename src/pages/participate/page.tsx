@@ -1,10 +1,16 @@
+'use client';
+
+import { useState } from 'react';
+
 import Navbar from '@/components/feature/Navbar';
 import Footer from '@/components/feature/Footer';
 import useHashScroll from '@/hooks/useHashScroll';
 import SponsorshipContactSection from '@/pages/home/components/SponsorshipContactSection';
+import ApplyModal from '@/pages/home/components/ResearchJoinModal';
 
 export default function ParticipatePage() {
   useHashScroll();
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   return (
     <>
@@ -17,9 +23,9 @@ export default function ParticipatePage() {
             <nav className="text-xs text-foreground-400 mb-4">
               <span className="text-foreground-500">홈</span>
               <i className="ri-arrow-right-s-line mx-2"></i>
-              <span className="text-accent-600 font-medium">참여</span>
+              <span className="text-primary-600 font-medium">참여</span>
             </nav>
-            <h1 className="text-lg md:text-3xl font-bold text-accent-600">참여</h1>
+            <h1 className="text-lg md:text-3xl font-bold text-primary-600">참여</h1>
             <p className="text-sm text-foreground-500 mt-2">연구회원 가입, 후원, 문의를 통해 협회와 함께하세요.</p>
           </div>
         </section>
@@ -54,7 +60,10 @@ export default function ParticipatePage() {
               </div>
             </div>
             <div className="mt-8">
-              <button className="px-6 py-3 bg-primary-500 text-background-50 rounded-md text-sm font-medium hover:bg-primary-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button 
+                onClick={() => setIsSignUpOpen(true)}
+                className="px-6 py-3 bg-primary-500 text-background-50 rounded-md text-sm font-medium hover:bg-primary-600 transition-colors cursor-pointer whitespace-nowrap"
+              >
                 연구회원 신청하기
               </button>
             </div>
@@ -65,6 +74,11 @@ export default function ParticipatePage() {
           <SponsorshipContactSection />
         </div>
       </main>
+
+      {isSignUpOpen && (
+        <ApplyModal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
+      )}
+
       <Footer />
     </>
   );

@@ -130,20 +130,6 @@ export default function ResearchCareerSection() {
             ))}
           </div>
         </div>
-
-        {/* References */}
-        <div>
-          <h3 className="text-sm font-semibold text-foreground-400 uppercase tracking-wider mb-4">해외 연구 기관 사례</h3>
-          <div className="space-y-2">
-            {references.map((ref) => (
-              <div key={ref.title} className="flex items-center gap-3 text-sm">
-                <span className="text-xs font-medium text-accent-600 min-w-[140px]">{ref.source}</span>
-                <span className="text-foreground-600">{ref.title}</span>
-                {ref.author && <span className="text-xs text-foreground-400">({ref.author})</span>}
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

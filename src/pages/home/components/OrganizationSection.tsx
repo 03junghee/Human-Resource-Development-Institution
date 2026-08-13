@@ -43,12 +43,13 @@ const orgData = [
       { name: '행정·재정팀', detail: '회계, 법인 등기, 비상주/상주 사무실 관리, PG 연동 및 후원금 관리' },
       { name: '대외협력·홍보팀', detail: '웹사이트 관리, 정관 및 법인 정보 공시, 미디어 대응' },
     ],
-    personnel: '',
+    personnel: '경영학 석사, 행정·재무 전문가, 대외협력 담당자',
   },
 ];
 
 export default function OrganizationSection() {
-  const [expanded, setExpanded] = useState<string | null>(null);
+  // 여러 부서의 열림/닫힘 상태를 다중 관리하기 위한 상태 (배열 형태)
+  const [expandedIds, setExpandedIds] = useState<string[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -66,13 +67,16 @@ export default function OrganizationSection() {
     return () => observer.disconnect();
   }, []);
 
+  // 토글 클릭 시 기존 열린 목록에 포함되어 있으면 제거, 없으면 추가
   const toggle = (id: string) => {
-    setExpanded(expanded === id ? null : id);
+    setExpandedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 px-6 md:px-10 bg-background-100">
-      <div className="max-w-[800px] mx-auto">
+    <section ref={sectionRef} className="py-20 md:py-28 px-4 md:px-10 bg-background-100">
+      <div className="max-w-[1200px] mx-auto">
         <div className="mb-2">
           <span className="text-xs font-medium text-accent-600 uppercase tracking-widest">Organization</span>
         </div>
@@ -96,8 +100,8 @@ export default function OrganizationSection() {
             <div className="w-[1px] h-8 bg-primary-300"></div>
           </div>
 
-          {/* Level 2: 3 items with horizontal connector */}
-          <div className="relative max-w-[600px] mx-auto pt-8 overflow-x-auto">
+          {/* Level 2: 감사 / 협회장 / 자문위원회 */}
+          <div className="relative max-w-[600px] mx-auto pt-8">
             {/* Horizontal line */}
             <div className="absolute top-0 left-[16%] right-[16%] h-[1px] bg-primary-300"></div>
 
@@ -111,7 +115,6 @@ export default function OrganizationSection() {
                   }`}
                 >
                   <span className="font-semibold text-foreground-700 block">감사</span>
-                  <span className="text-[10px] text-foreground-400 mt-0.5 block">회원 감시</span>
                 </div>
               </div>
 
@@ -124,10 +127,7 @@ export default function OrganizationSection() {
                   }`}
                 >
                   협회장
-                  <span className="text-xs font-normal opacity-90 block">(연구소장)</span>
                 </div>
-                {/* Connector down to departments */}
-                <div className="w-[1px] h-6 bg-primary-300 mt-2"></div>
               </div>
 
               {/* 자문위원회 */}
@@ -139,100 +139,114 @@ export default function OrganizationSection() {
                   }`}
                 >
                   <span className="font-semibold text-foreground-700 block">자문위원회</span>
-                  <span className="text-[10px] text-foreground-400 mt-0.5 block">글로벌 정책 · AI·HR 산업</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Connector down to departments */}
-          <div className="flex justify-center mt-0 mb-6">
-            <div className="w-[1px] h-6 bg-primary-300"></div>
+          {/* 협회장에서 하단 4개 부서로 이어지는 연결선 */}
+          <div className="relative max-w-[1000px] mx-auto">
+            {/* 협회장 아래 중앙 수직선 */}
+            <div className="flex justify-center">
+              <div className="w-[1px] h-8 bg-primary-300"></div>
+            </div>
+
+            {/* 데스크톱/태블릿(2열 이상)용 연결 가로선 */}
+            <div className="hidden sm:block absolute top-8 left-[12.5%] right-[12.5%] h-[1px] bg-primary-300"></div>
+
+            {/* 하단 4개 부서 연결 수직선 (데스크톱) */}
+            <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 h-6">
+              <div className="flex justify-center">
+                <div className="w-[1px] h-full bg-primary-300"></div>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[1px] h-full bg-primary-300"></div>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[1px] h-full bg-primary-300"></div>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[1px] h-full bg-primary-300"></div>
+              </div>
+            </div>
           </div>
 
-          {/* Level 3: Department summaries */}
+          {/* Level 3: 펼쳐지는 4개 주요 부서 카드 Grid */}
           <div
-            className={`grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-[720px] mx-auto transition-all duration-700 delay-500 ${
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1000px] mx-auto items-start transition-all duration-700 delay-500 ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            {orgData.map((dept) => (
-              <div key={dept.id} className="bg-background-50 border border-background-200 rounded-lg p-3 text-center">
-                <span className="text-xs font-semibold text-primary-600">{dept.shortTitle}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="w-full h-[1px] bg-background-200 mb-10"></div>
-
-        {/* Detailed Department Cards */}
-        <div className="space-y-3">
-          {orgData.map((dept, idx) => (
-            <div
-              key={dept.id}
-              className={`bg-background-50 border border-background-200/70 rounded-lg overflow-hidden transition-all duration-700 ${
-                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ transitionDelay: `${600 + idx * 100}ms` }}
-            >
-              <button
-                className="w-full flex items-center justify-between px-5 py-4 md:py-5 text-left cursor-pointer hover:bg-background-100/50 transition-colors"
-                onClick={() => toggle(dept.id)}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-8 h-8 flex items-center justify-center rounded-md flex-shrink-0 ${
-                      expanded === dept.id ? 'bg-primary-50' : 'bg-background-100'
-                    }`}
+            {orgData.map((dept, idx) => {
+              const isOpen = expandedIds.includes(dept.id);
+              return (
+                <div
+                  key={dept.id}
+                  className={`bg-background-50 border rounded-xl overflow-hidden transition-all duration-300 shadow-sm ${
+                    isOpen ? 'border-primary-400 ring-2 ring-primary-100' : 'border-background-200 hover:border-primary-300'
+                  }`}
+                >
+                  {/* 카드 헤더 (클릭 시 토글) */}
+                  <button
+                    type="button"
+                    onClick={() => toggle(dept.id)}
+                    className="w-full p-4 flex flex-col justify-between text-left cursor-pointer transition-colors bg-primary-500 text-white hover:bg-primary-600"
                   >
-                    <span className="text-xs font-bold text-primary-500">{idx + 1}</span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm md:text-base font-semibold text-foreground-800">{dept.title}</h4>
-                    <p className="text-xs text-foreground-400 mt-0.5 hidden sm:block">{dept.role}</p>
-                  </div>
-                </div>
-                <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 ml-4">
-                  <i
-                    className={`ri-arrow-down-s-line text-lg text-foreground-400 transition-transform duration-300 ${
-                      expanded === dept.id ? 'rotate-180' : ''
-                    }`}
-                  ></i>
-                </div>
-              </button>
-
-              {expanded === dept.id && (
-                <div className="px-5 pb-5 border-t border-background-100">
-                  <p className="text-xs text-foreground-500 mt-3 mb-4 sm:hidden">{dept.role}</p>
-
-                  <div className="mb-3">
-                    <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-2">
-                      구성 하위팀
-                    </h5>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {dept.teams.map((team) => (
-                        <div key={team.name} className="bg-background-100 rounded-md p-3">
-                          <p className="text-xs font-medium text-foreground-700">{team.name}</p>
-                          <p className="text-[11px] text-foreground-400 mt-1 leading-relaxed">{team.detail}</p>
-                        </div>
-                      ))}
+                    <div className="flex items-center justify-between w-full">
+                      <span className="text-xs font-bold bg-white/20 px-2 py-0.5 rounded text-white">
+                        0{idx + 1}
+                      </span>
+                      <i
+                        className={`ri-arrow-down-s-line text-xl transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      ></i>
                     </div>
-                  </div>
+                    <h4 className="text-sm md:text-base font-bold mt-3 leading-snug">
+                      {dept.shortTitle}
+                    </h4>
+                  </button>
 
-                  {dept.personnel && (
-                    <div className="mt-3 pt-3 border-t border-background-200">
-                      <h5 className="text-[11px] font-semibold text-foreground-400 uppercase tracking-wider mb-1.5">
-                        핵심배치 인력
-                      </h5>
-                      <p className="text-xs text-foreground-500">{dept.personnel}</p>
+                  {/* 카드 세부 내용 (독립적으로 펼쳐짐) */}
+                  {isOpen && (
+                    <div className="p-4 bg-white border-t border-background-100 space-y-4 text-left animate-fadeIn">
+                      <div>
+                        <h5 className="text-[11px] font-semibold text-primary-600 uppercase tracking-wider mb-1">
+                          부서 역할
+                        </h5>
+                        <p className="text-xs text-foreground-600 leading-relaxed">{dept.role}</p>
+                      </div>
+
+                      <div>
+                        <h5 className="text-[11px] font-semibold text-primary-600 uppercase tracking-wider mb-2">
+                          구성 하위팀
+                        </h5>
+                        <div className="space-y-2">
+                          {dept.teams.map((team) => (
+                            <div key={team.name} className="bg-background-100 rounded-md p-2.5">
+                              <p className="text-xs font-bold text-foreground-800">{team.name}</p>
+                              <p className="text-[11px] text-foreground-500 mt-0.5 leading-relaxed">
+                                {team.detail}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {dept.personnel && (
+                        <div className="pt-2 border-t border-background-100">
+                          <h5 className="text-[11px] font-semibold text-primary-600 uppercase tracking-wider mb-1">
+                            핵심배치 인력
+                          </h5>
+                          <p className="text-xs text-foreground-500 leading-relaxed">{dept.personnel}</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
-              )}
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

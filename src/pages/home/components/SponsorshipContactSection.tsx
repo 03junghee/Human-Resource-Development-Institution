@@ -92,34 +92,6 @@ export default function SponsorshipContactSection() {
             </div>
           </div>
 
-          <div className="mb-8">
-            <h3 className="text-sm font-semibold text-primary-500 uppercase tracking-wider mb-4">후원 유형 안내</h3>
-
-            <div>
-              <p className="text-sm text-foreground-500 mb-4">
-                <strong className="text-foreground-700">정기 후원:</strong> 매월 일정 금액을 후원하여 지속 가능한 연구 생태계를 만듭니다.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {amounts.map((amt) => (
-                  <button
-                    key={amt}
-                    onClick={() => setSelectedAmount(amt)}
-                    className={`px-5 py-2.5 text-sm rounded-md border transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                      selectedAmount === amt
-                        ? 'border-primary-400 bg-primary-500 text-background-50'
-                        : 'border-background-300 text-foreground-600 hover:border-primary-300 hover:text-primary-500'
-                    }`}
-                  >
-                    {amt}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-foreground-400">
-                <strong>혜택:</strong> 기부금 영수증 발급(소득공제 혜택) · 연간 연구 보고서 수령 · 협회 주최 포럼 우선 초청
-              </p>
-            </div>
-          </div>
-
           <div className="text-sm text-foreground-400 pt-4 border-t border-background-200">
             <p><strong className="text-foreground-600">후원 문의:</strong> 02-586-7562</p>
             <p className="mt-1"><strong className="text-foreground-600">기부금 영수증:</strong> 법정 기부금 단체 지정에 따라 연말정산 시 소득공제 혜택을 받으실 수 있습니다.</p>

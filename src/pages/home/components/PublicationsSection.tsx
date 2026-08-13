@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ResearchJoinModal from './ResearchJoinModal'; // 모달 컴포넌트 임포트
 
 interface Publication {
   id: string;
@@ -9,7 +10,6 @@ interface Publication {
   date: string;
   preview: string;
   coverImage: string;
-  pdfUrl?: string;
   locked: boolean;
 }
 
@@ -63,8 +63,7 @@ const publications: Publication[] = [
     date: '2025.11',
     preview: '인공지능 기술의 급속한 발전으로 인해 청년들이 경험하는 기술적 소외감과 직업 대체 및 도태에 대한 불안을 완화하는 회복탄력성 요인과 메타인지 메커니즘을 탐색한 학술 논문입니다.',
     coverImage: 'https://readdy.ai/api/search-image?query=Academic%20paper%20cover%20design%20for%20psychology%20and%20metacognition%20research%2C%20abstract%20brain%20with%20adaptive%20network%20nodes%20and%20resilience%20pathways%2C%20soft%20teal%20mint%20green%20color%20palette%2C%20clean%20white%20background%2C%20professional%20bilingual%20scholarly%20layout&width=800&height=500&seq=pub-cover-05&orientation=landscape',
-    pdfUrl: 'https://storage.helloreaddy.io/project_files/cab42dc8-affc-415d-83cd-66826389573a/49d3b592-3863-4477-a2a1-3fc1d9feb132_1.pdf',
-    locked: false,
+    locked: true,
   },
   {
     id: 'pub-6',
@@ -75,8 +74,7 @@ const publications: Publication[] = [
     date: '2026.02',
     preview: 'AI 기술의 급속한 발전으로 변화하고 있는 직업 및 산업 환경 속에서 청년의 진로 자기결정성과 문제중심 진로 설계의 필요성을 탐색한 학술 논문입니다.',
     coverImage: 'https://readdy.ai/api/search-image?query=Academic%20journal%20cover%20for%20career%20development%20research%2C%20abstract%20human%20figure%20with%20branching%20career%20pathway%20nodes%20and%20decision%20points%2C%20soft%20sage%20green%20and%20teal%20tones%2C%20clean%20minimalist%20professional%20design%2C%20white%20background&width=800&height=500&seq=pub-cover-06&orientation=landscape',
-    pdfUrl: 'https://storage.helloreaddy.io/project_files/cab42dc8-affc-415d-83cd-66826389573a/a236f952-51d0-4721-a634-3b2658632c82_2.pdf',
-    locked: false,
+    locked: true,
   },
 ];
 
@@ -89,6 +87,9 @@ const typeColors: Record<string, string> = {
 export default function PublicationsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  
+  // 모달 제어 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -121,6 +122,7 @@ export default function PublicationsSection() {
           </div>
         </div>
 
+        {/* 1번~6번 논문 목록 (전부 회원전용 버튼 적용) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {publications.map((pub, idx) => (
             <div
@@ -130,7 +132,6 @@ export default function PublicationsSection() {
               }`}
               style={{ transitionDelay: `${idx * 120}ms` }}
             >
-              {/* Cover Image */}
               <div className="relative h-40 md:h-48 overflow-hidden bg-background-100">
                 <img
                   src={pub.coverImage}
@@ -149,7 +150,6 @@ export default function PublicationsSection() {
                 )}
               </div>
 
-              {/* Content */}
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[11px] text-foreground-400 font-mono">{pub.date}</span>
@@ -163,22 +163,13 @@ export default function PublicationsSection() {
                 <p className="text-xs text-foreground-500 leading-relaxed line-clamp-3 mb-4">{pub.preview}</p>
 
                 <div className="flex items-center gap-2">
-                  {pub.pdfUrl ? (
-                    <a
-                      href={pub.pdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary-500 text-background-50 rounded-md text-xs font-medium hover:bg-primary-600 transition-colors cursor-pointer"
-                    >
-                      <i className="ri-download-line"></i>
-                      PDF 보기
-                    </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-background-100 text-foreground-400 rounded-md text-xs font-medium">
-                      <i className="ri-lock-line"></i>
-                      회원 전용
-                    </span>
-                  )}
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-background-100 hover:bg-primary-50 text-foreground-500 hover:text-primary-600 rounded-md text-xs font-medium transition-colors cursor-pointer"
+                  >
+                    <i className="ri-lock-line"></i>
+                    회원 전용
+                  </button>
                 </div>
               </div>
             </div>
@@ -197,12 +188,18 @@ export default function PublicationsSection() {
                 연구회원 가입 시 논문 전문, 연구보고서, 칼럼 등 모든 학술 자료를 열람할 수 있습니다.
               </p>
             </div>
-            <button className="flex-shrink-0 px-5 py-2.5 bg-primary-500 text-background-50 rounded-md text-sm font-medium whitespace-nowrap hover:bg-primary-600 transition-colors cursor-pointer">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex-shrink-0 px-5 py-2.5 bg-primary-500 text-background-50 rounded-md text-sm font-medium whitespace-nowrap hover:bg-primary-600 transition-colors cursor-pointer"
+            >
               연구회원 신청
             </button>
           </div>
         </div>
       </div>
+
+      {/* 모달 연동 */}
+      <ResearchJoinModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

@@ -188,10 +188,6 @@ export default function RelatedArticlesSection() {
             />
           ))}
         </div>
-
-        <p className="text-[11px] text-foreground-400 mt-6 text-center">
-          위 기사 및 보고서는 인적자원개발연구협회와의 직접적인 관련이나 제휴를 의미하지 않으며, 학술·정책 참고 자료로 제공됩니다.
-        </p>
       </div>
     </section>
   );

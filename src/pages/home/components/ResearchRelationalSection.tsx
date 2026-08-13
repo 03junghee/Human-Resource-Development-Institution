@@ -163,23 +163,6 @@ export default function ResearchRelationalSection() {
             </table>
           </div>
         </div>
-
-        {/* Research Questions */}
-        <div>
-          <h3 className="text-sm font-semibold text-foreground-400 uppercase tracking-wider mb-4">관계 주도성 연구가 다루는 질문</h3>
-          <div className="space-y-3">
-            {[
-              '자기 자신과의 관계(1층)가 취약할 때, 타인과의 관계는 어떤 방식으로 왜곡되는가?',
-              '관계에서의 메타인지 — 자신의 감정과 행동을 객관적으로 모니터링하고 조절하는 능력은 훈련 가능한가?',
-              '차가운 예의와 자연스러운 페이드아웃은 관계의 실패인가, 성숙한 선별인가?',
-            ].map((q, idx) => (
-              <div key={idx} className="flex items-start gap-3">
-                <div className="w-5 h-5 flex items-center justify-center rounded-full bg-secondary-50 text-secondary-600 text-xs font-bold flex-shrink-0 mt-0.5">?</div>
-                <p className="text-sm text-foreground-600 leading-relaxed">{q}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -20,9 +20,9 @@ export default function ResearchPage() {
             <nav className="text-xs text-foreground-400 mb-4">
               <span className="text-foreground-500">홈</span>
               <i className="ri-arrow-right-s-line mx-2"></i>
-              <span className="text-accent-600 font-medium">연구·개발</span>
+              <span className="text-primary-600 font-medium">연구·개발</span>
             </nav>
-            <h1 className="text-lg md:text-3xl font-bold text-accent-600">연구·개발</h1>
+            <h1 className="text-lg md:text-3xl font-bold text-primary-600">연구·개발</h1>
             <p className="text-sm text-foreground-500 mt-2">AI 시대의 4대 주도성 연구와 학술 성과를 소개합니다.</p>
           </div>
         </section>

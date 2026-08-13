@@ -119,18 +119,6 @@ export default function ResearchResilientSection() {
             ))}
           </div>
         </div>
-
-        {/* Core Indicators */}
-        <div>
-          <h3 className="text-sm font-semibold text-foreground-400 uppercase tracking-wider mb-5">핵심 연구 지표</h3>
-          <div className="flex flex-wrap gap-2">
-            {['Self-awareness', 'Metacognition', 'Emotional Regulation', 'Resilience', 'Meaning-making'].map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-700 font-medium">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

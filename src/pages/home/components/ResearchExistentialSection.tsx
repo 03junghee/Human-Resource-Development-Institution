@@ -165,23 +165,6 @@ export default function ResearchExistentialSection() {
             기술이라는 엔진을 장착하되 운전대는 내가 쥐고, 알고리즘이 추천하는 길이 아닌 내가 의미를 느끼는 길을 선택하는 것 — 이것이 AI 시대에 인간이 인간답게 살아남는 유일한 정답이다.
           </p>
         </div>
-
-        {/* References */}
-        <div>
-          <h3 className="text-sm font-semibold text-foreground-400 uppercase tracking-wider mb-4">참고 이론</h3>
-          <div className="space-y-2">
-            {references.map((ref) => (
-              <div key={ref.num} className="flex items-start gap-3 text-sm">
-                <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-background-100 text-foreground-400 text-xs font-mono">
-                  {ref.num}
-                </span>
-                <span className="text-foreground-600">
-                  <span className="font-medium text-foreground-700">{ref.author}</span> — {ref.title}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
