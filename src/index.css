@@ -82,13 +82,19 @@ html {
   font-family: var(--font-body);
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: oklch(var(--background-50));
-  color: oklch(var(--foreground-800));
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    font-family: var(--font-body);
+    background-color: oklch(var(--background-50));
+    color: oklch(var(--foreground-800));
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* 단어 단위 줄바꿈 설정 추가 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
